@@ -48,20 +48,20 @@ export default function Home() {
   }
 
   const textareaClassName =
-    "w-full resize-y rounded-md border border-neutral-200 bg-white px-3 py-2.5 text-[15px] leading-relaxed text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10";
+    "textarea-dark-scrollbar w-full resize-y rounded-md border border-[#2e2e2e] bg-[#141414] px-3 py-2.5 text-[15px] leading-relaxed text-[#ededed] placeholder:text-[#555] focus:border-[#2e2e2e] focus:outline-none focus:ring-2 focus:ring-white/10";
 
   return (
-    <div className="min-h-full bg-white font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif] text-neutral-900 antialiased">
+    <div className="min-h-full bg-[#0a0a0a] font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif] text-[#ededed] antialiased">
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
         <header className="mb-10">
-          <h1 className="text-3xl font-bold tracking-tight text-neutral-900">
+          <h1 className="text-3xl font-bold tracking-tight text-[#ededed]">
             Bullet Check
           </h1>
-          <p className="mt-3 text-base leading-relaxed text-neutral-600">
+          <p className="mt-3 text-base leading-relaxed text-[#ededed]">
             Paste a job description and your resume. Get back your 3 weakest
             bullets and stronger rewrites.
           </p>
-          <p className="mt-2 text-sm text-neutral-500">
+          <p className="mt-2 text-sm text-[#ededed]">
             Paste both inputs, hit "Analyze", and results appear below.
           </p>
         </header>
@@ -70,7 +70,7 @@ export default function Home() {
           <div>
             <label
               htmlFor="job-description"
-              className="mb-2 block text-sm font-medium text-neutral-700"
+              className="mb-2 block text-sm font-medium text-[#ededed]"
             >
               Job Description
             </label>
@@ -88,7 +88,7 @@ export default function Home() {
           <div>
             <label
               htmlFor="resume"
-              className="mb-2 block text-sm font-medium text-neutral-700"
+              className="mb-2 block text-sm font-medium text-[#ededed]"
             >
               Resume
             </label>
@@ -106,7 +106,7 @@ export default function Home() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-md bg-neutral-900 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-70"
+            className="w-full rounded-md bg-white px-4 py-3 text-sm font-medium text-black transition-colors hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-70"
           >
             <span className={loading ? "animate-pulse" : undefined}>
               {loading ? "Analyzing..." : "Analyze"}
@@ -122,35 +122,35 @@ export default function Home() {
 
         {results && (
           <section className="mt-12 space-y-4">
-            <h2 className="text-sm font-medium text-neutral-500">Results</h2>
+            <h2 className="text-sm font-medium text-[#ededed]">Results</h2>
             {results.map((result, index) => (
               <article
                 key={index}
-                className="rounded-lg bg-[#f5f5f5] px-5 py-5"
+                className="rounded-lg border border-[#2e2e2e] bg-[#141414] px-5 py-5"
               >
                 <div>
-                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                  <p className="text-xs font-medium uppercase tracking-wide text-[#ededed]">
                     Original
                   </p>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-neutral-900">
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-[#ededed]">
                     {result.original}
                   </p>
                 </div>
 
                 <div className="mt-5">
-                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                  <p className="text-xs font-medium uppercase tracking-wide text-[#ededed]">
                     Why it&apos;s weak
                   </p>
-                  <p className="mt-1.5 text-[15px] italic leading-relaxed text-neutral-600">
+                  <p className="mt-1.5 text-[15px] italic leading-relaxed text-[#888]">
                     {result.reason}
                   </p>
                 </div>
 
                 <div className="mt-5">
-                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                  <p className="text-xs font-medium uppercase tracking-wide text-[#ededed]">
                     Stronger rewrite
                   </p>
-                  <p className="mt-1.5 text-[15px] font-semibold leading-relaxed text-neutral-900">
+                  <p className="mt-1.5 text-[15px] font-semibold leading-relaxed text-[#ededed]">
                     {result.rewrite}
                   </p>
                 </div>
