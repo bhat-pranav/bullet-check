@@ -47,80 +47,118 @@ export default function Home() {
     }
   }
 
+  const textareaClassName =
+    "w-full resize-y rounded-md border border-neutral-200 bg-white px-3 py-2.5 text-[15px] leading-relaxed text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10";
+
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12">
-      <header className="mb-8">
-        <h1 className="text-2xl font-semibold">Bullet Check</h1>
-        <p className="mt-2 text-gray-600">
-          Paste a job description and your resume. Get back your 3 weakest
-          bullets — and better versions.
-        </p>
-      </header>
+    <div className="min-h-full bg-white font-[system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif] text-neutral-900 antialiased">
+      <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
+        <header className="mb-10">
+          <h1 className="text-3xl font-bold tracking-tight text-neutral-900">
+            Bullet Check
+          </h1>
+          <p className="mt-3 text-base leading-relaxed text-neutral-600">
+            Paste a job description and your resume. Get back your 3 weakest
+            bullets and stronger rewrites.
+          </p>
+          <p className="mt-2 text-sm text-neutral-500">
+            Paste both inputs, hit "Analyze", and results appear below.
+          </p>
+        </header>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label htmlFor="job-description" className="mb-1 block font-medium">
-            Job Description
-          </label>
-          <textarea
-            id="job-description"
-            rows={8}
-            className="w-full rounded border border-gray-300 p-3 text-sm"
-            value={jobDescription}
-            onChange={(e) => setJobDescription(e.target.value)}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="resume" className="mb-1 block font-medium">
-            Resume
-          </label>
-          <textarea
-            id="resume"
-            rows={12}
-            className="w-full rounded border border-gray-300 p-3 text-sm"
-            value={resume}
-            onChange={(e) => setResume(e.target.value)}
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="rounded bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
-        >
-          {loading ? "Analyzing..." : "Analyze"}
-        </button>
-      </form>
-
-      {error && (
-        <div className="mt-8 rounded border border-red-300 bg-red-50 p-4 text-sm text-red-800">
-          {error}
-        </div>
-      )}
-
-      {results && (
-        <section className="mt-8 space-y-6">
-          <h2 className="text-lg font-semibold">Results</h2>
-          {results.map((result, index) => (
-            <article
-              key={index}
-              className="rounded border border-gray-200 p-4 text-sm"
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label
+              htmlFor="job-description"
+              className="mb-2 block text-sm font-medium text-neutral-700"
             >
-              <p className="font-medium">Original</p>
-              <p className="mt-1 text-gray-800">{result.original}</p>
+              Job Description
+            </label>
+            <textarea
+              id="job-description"
+              rows={10}
+              className={textareaClassName}
+              placeholder="Paste the full job posting including responsibilities and requirements."
+              value={jobDescription}
+              onChange={(e) => setJobDescription(e.target.value)}
+              required
+            />
+          </div>
 
-              <p className="mt-4 font-medium">Why it&apos;s weak</p>
-              <p className="mt-1 text-gray-600">{result.reason}</p>
+          <div>
+            <label
+              htmlFor="resume"
+              className="mb-2 block text-sm font-medium text-neutral-700"
+            >
+              Resume
+            </label>
+            <textarea
+              id="resume"
+              rows={10}
+              className={textareaClassName}
+              placeholder="Paste your full resume as plain text including all sections, not just bullets."
+              value={resume}
+              onChange={(e) => setResume(e.target.value)}
+              required
+            />
+          </div>
 
-              <p className="mt-4 font-medium">Stronger rewrite</p>
-              <p className="mt-1 text-gray-800">{result.rewrite}</p>
-            </article>
-          ))}
-        </section>
-      )}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-md bg-neutral-900 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            <span className={loading ? "animate-pulse" : undefined}>
+              {loading ? "Analyzing..." : "Analyze"}
+            </span>
+          </button>
+
+          {error && (
+            <p className="text-sm text-red-600" role="alert">
+              {error}
+            </p>
+          )}
+        </form>
+
+        {results && (
+          <section className="mt-12 space-y-4">
+            <h2 className="text-sm font-medium text-neutral-500">Results</h2>
+            {results.map((result, index) => (
+              <article
+                key={index}
+                className="rounded-lg bg-[#f5f5f5] px-5 py-5"
+              >
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                    Original
+                  </p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-neutral-900">
+                    {result.original}
+                  </p>
+                </div>
+
+                <div className="mt-5">
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                    Why it&apos;s weak
+                  </p>
+                  <p className="mt-1.5 text-[15px] italic leading-relaxed text-neutral-600">
+                    {result.reason}
+                  </p>
+                </div>
+
+                <div className="mt-5">
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                    Stronger rewrite
+                  </p>
+                  <p className="mt-1.5 text-[15px] font-semibold leading-relaxed text-neutral-900">
+                    {result.rewrite}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </section>
+        )}
+      </div>
     </div>
   );
 }
