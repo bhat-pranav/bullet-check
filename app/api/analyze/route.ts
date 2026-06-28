@@ -130,7 +130,8 @@ export async function POST(request: Request) {
 
   let parsed: AnalyzeResponse;
   try {
-    parsed = JSON.parse(text);
+    const cleaned = text.replace(/```json|```/g, "").trim();
+    parsed = JSON.parse(cleaned);
   } catch {
     return NextResponse.json(
       { error: "Failed to parse analysis results." },

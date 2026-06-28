@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Bullet Check",
   description:
-    "Paste a job description and your resume. Get back your 3 weakest bullets — and better versions.",
+    "Paste a job description and your resume. Get back your 3 weakest bullets and better versions.",
 };
 
 export default function RootLayout({
