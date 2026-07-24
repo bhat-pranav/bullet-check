@@ -1,19 +1,5 @@
 import { NextResponse } from "next/server";
-
-type AnalyzeRequest = {
-  jobDescription?: string;
-  resume?: string;
-};
-
-type BulletResult = {
-  original: string;
-  reason: string;
-  rewrite: string;
-};
-
-type AnalyzeResponse = {
-  results: BulletResult[];
-};
+import type { AnalyzeRequest, AnalyzeResponse } from "../../types";
 
 type AnthropicMessageResponse = {
   content?: Array<{ type: string; text?: string }>;

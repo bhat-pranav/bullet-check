@@ -1,16 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-type BulletResult = {
-  original: string;
-  reason: string;
-  rewrite: string;
-};
-
-type AnalyzeResponse = {
-  results: BulletResult[];
-};
+import type { AnalyzeResponse, BulletResult } from "./types";
 
 export default function Home() {
   const [jobDescription, setJobDescription] = useState("");
@@ -62,7 +53,7 @@ export default function Home() {
             bullets and stronger rewrites.
           </p>
           <p className="mt-2 text-sm text-[#ededed]">
-            Paste both inputs, hit "Analyze", and results appear below.
+            Paste both inputs, hit &quot;Analyze&quot;, and results appear below.
           </p>
         </header>
 
